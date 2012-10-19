@@ -1,0 +1,30 @@
+-#  This file is app/views/movies/index.html.haml
+%h2 All Movies
+
+%table#movies
+  %thead
+    %tr
+      %th Movie Title
+      %th Rating
+      %th Release Date
+      %th More Info
+  %tbody
+    -# ORDEN ALFABETICO
+    -# Procedimiento 1: 
+    -# En movies_controller.rb descomentar @movies = Movie.all y comentar @movies = Movie.all.sort_by {|m| m.title} en def index
+    -# En index.html.haml descomentar '- @movies = @movies.sort_by {|m| m.title}'
+    -# Procedimiento 2: 
+    -# En movies_controller.rb comentar @movies = Movie.all y descomentar @movies = Movie.all.sort_by {|m| m.title} en def index
+    -# En index.html.haml comentar '- @movies = @movies.sort_by {|m| m.title}'
+    -#
+    -#- @movies = @movies.sort_by {|m| m.title}
+    - @movies.each_with_index do |movie,index|
+      %tr
+        %td= "#{index+1} #{movie.title}" 
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+
+-# add to end of index.html.haml
+
+= link_to 'Add new movie', new_movie_path

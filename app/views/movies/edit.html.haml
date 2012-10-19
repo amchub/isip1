@@ -1,0 +1,19 @@
+%h1 Edit Existing Movie
+
+= form_tag movie_path(@movie), :method => :put do
+
+  = label :movie, :title, 'Title'
+  = text_field :movie, 'title'
+
+  -# ...same as new.html.haml!  
+  -# Soon we will see a way to DRY it out.
+  -# ....
+
+  = label :movie, :description, 'Description';
+  = text_area :movie, 'description'
+
+  = submit_tag 'Update Movie Info'
+
+= form_tag movie_path(@movie), :method => :get do
+
+  = submit_tag 'Cancel'
